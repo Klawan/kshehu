@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Result</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1>Exam Result</h1>
+        </header>
+        
+        <div id="resultContainer">
+            <p id="fullname"></p>
+            <p id="registrationNumber"></p>
+            <p id="department"></p>
+            <p id="englishScore"></p>
+            <p id="mathScore"></p>
+            <p id="physicsScore"></p>
+            <p id="educationScore"></p>
+            <p id="averageScore"></p>
+            <p id="timeTaken"></p>
+            <p id="resultStatus"></p>
+            <button id="logoutButton">Logout</button>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Objective Exam Platform. All rights reserved.</p>
+            <p style="font-size: 17px; font-weight: bold;">Powered by K-Shehu</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById("logoutButton").addEventListener("click", function() {
+            window.location.href = "index.html";
+        });
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const fullname = urlParams.get('fullname');
+            const registrationNumber = urlParams.get('registrationNumber');
+            const department = urlParams.get('department');
+            const englishScore = urlParams.get('englishScore');
+            const mathScore = urlParams.get('mathScore');
+            const physicsScore = urlParams.get('physicsScore');
+            const educationScore = urlParams.get('educationScore');
+            const averageScore = urlParams.get('averageScore');
+            const timeTaken = urlParams.get('timeTaken');
+
+            document.getElementById('fullname').textContent = `Full Name: ${fullname}`;
+            document.getElementById('registrationNumber').textContent = `Registration Number: ${registrationNumber}`;
+            document.getElementById('department').textContent = `Department: ${department}`;
+            document.getElementById('englishScore').textContent = `English Score: ${englishScore}`;
+            document.getElementById('mathScore').textContent = `Math Score: ${mathScore}`;
+            document.getElementById('physicsScore').textContent = `Physics Score: ${physicsScore}`;
+            document.getElementById('educationScore').textContent = `Chemistry Score: ${educationScore}`;
+            document.getElementById('averageScore').textContent = `Average Score: ${averageScore}`;
+            document.getElementById('timeTaken').textContent = `Time Taken: ${timeTaken} seconds`;
+
+            const resultStatus = averageScore >= 50 ? "Passed" : "Failed";
+            document.getElementById('resultStatus').textContent = `Status: ${resultStatus}`;
+        }
+    </script>
+</body>
+</html>

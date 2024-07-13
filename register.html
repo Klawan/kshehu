@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+<div class="login-page">
+  <div class="form">
+    <form class="register-form" method="POST">
+      <h2>Register</h2>
+      <input type="text" placeholder="Full Name *" required/>     
+      <input type="email" placeholder="Email *" required/>
+      <input type="text" placeholder="Department *" required/>
+      <input type="password" placeholder="Password *" required/>   
+      <input type="password" placeholder="confirm Password *" required/>
+        <a class="btn" href="#">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Create
+        </a>
+        <p class="message">Already registered? <a href="index.html">Sign In</a></p> 
+ <script>
+    function showDepartments() {
+      var faculty = document.getElementById("faculty").value;
+      var departmentSelect = document.getElementById("department");
+      departmentSelect.innerHTML = ""; // clear options
+
+      // define departments for each faculty
+      var departments = {
+        "Faculty of science": ["Biology", "Biotechnology", "Chemistry"],
+        "Faculty of Engineering": ["--Select Department--", "Civil Engineering", "Electrical Engineering", "Mechanical Engineering"],
+        "Faculty of Arts": ["--Select Department--", "Biology", "Biotechnology", "Chemistry", "Industrial Chemistry", "Physics", "Geophysics", "Mathematic", "Computer Science", "Cyber Security", "Software Engineering"], 
+      };
+
+      // populate departments for selected faculty
+      if (faculty in departments) {
+        var options = departments[faculty];
+        for (var i = 0; i < options.length; i++) {
+          var option = document.createElement("option");
+          option.value = options[i];
+          option.text = options[i];
+          departmentSelect.appendChild(option);
+        }
+      }
+    }
+  </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="main.js"></script>
+  </div>
+</form>
+</body>
+</html> 

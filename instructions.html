@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructions</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1>Exam Instructions</h1>
+        </header>
+        
+        <div id="instructionsContainer">
+            <p style="font-weight: bold; color: dark-blue; font-size: 19px; font-size-adjust: 26px;">Read all the instructions carefully before starting the exam.</p>
+            <ul>
+                <li>There are 10 multiple-choice questions for each subject (English, Math, Physics, Education).</li>
+                <li>Each question carries 10 marks.</li>
+                <li>You will have 10 minutes for each subject.</li>
+                <li>No negative marking for wrong answers.</li>
+            </ul>
+            <form id="infoForm">
+                <input type="text" id="fullname" placeholder="Full Name" required>
+                <input type="text" id="registrationNumber" placeholder="Registration Number" required>
+                <input type="text" id="department" placeholder="Department" required>
+                <button type="submit">Start Exam</button>
+            </form>
+            <button id="logoutButton">Logout</button>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Objective Exam Platform. All rights reserved.</p>
+            <p style="font-size: 17px; font-weight: bold;">Powered by K-Shehu</p> 
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById("infoForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const fullname = document.getElementById("fullname").value;
+            const registrationNumber = document.getElementById("registrationNumber").value;
+            const department = document.getElementById("department").value;
+
+            localStorage.setItem("fullname", fullname);
+            localStorage.setItem("registrationNumber", registrationNumber);
+            localStorage.setItem("department", department);
+
+            // Redirect to exam page
+            window.location.href = "exam.html";
+        });
+
+        document.getElementById("logoutButton").addEventListener("click", function() {
+            // Redirect to login page
+            window.location.href = "index.html";
+        });
+    </script>
+</body>
+</html>

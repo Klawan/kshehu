@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Result</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <header>
+            <img src="logo.png" alt="Site Logo" style="max-width: 100px; margin-bottom: 10px;">
+            <h1>Exam Result</h1>
+        </header>
+        
+        <div id="resultContainer">
+            <!-- Result details to be populated dynamically -->
+            <p id="fullname"></p>
+            <p id="registrationNumber"></p>
+            <p id="department"></p>
+            <p id="englishScore"></p>
+            <p id="mathScore"></p>
+            <p id="physicsScore"></p>
+            <p id="educationScore"></p>
+            <p id="averageScore"></p>
+            <p id="timeTaken"></p>
+            <p id="resultStatus"></p>
+            <button id="downloadButton">Download Result</button>
+            <button id="logoutButton">Logout</button>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Objective Exam Platform. All rights reserved.</p>
+            <p style="font-size: 17px; font-weight: bold;">Powered by K-Shehu</p>
+        </footer>
+    </div>
+
+    <!-- Include jsPDF and html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+    <script>
+        // Function to handle PDF download
+        document.getElementById("downloadButton").addEventListener("click", function() {
+            downloadPDF();
+        });
+
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+
+            // Get the element to print
+            const element = document.getElementById("container");
+
+            // Check if html2canvas is loaded and available
+            if (typeof html2canvas !== 'undefined') {
+                html2canvas(element).then(canvas => {
+                    const imgData = canvas.toDataURL('image/png');
+                    const pdf = new jsPDF('p', 'mm', 'a4');
+                    const imgProps = pdf.getImageProperties(imgData);
+
+                    const pdfWidth = pdf.internal.pageSize.getWidth();
+                    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+                    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                    pdf.save("Exam_Result.pdf");
+                }).catch(error => {
+                    console.error('Error generating PDF:', error);
+                });
+            } else {
+                console.error('html2canvas is not available.');
+            }
+        }
+
+        // Populate result details from URL parameters
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const fullname = urlParams.get('fullname');
+            const registrationNumber = urlParams.get('registrationNumber');
+            const department = urlParams.get('department');
+            const englishScore = urlParams.get('englishScore');
+            const mathScore = urlParams.get('mathScore');
+            const physicsScore = urlParams.get('physicsScore');
+            const educationScore = urlParams.get('educationScore');
+            const averageScore = urlParams.get('averageScore');
+            const timeTaken = urlParams.get('timeTaken');
+
+            document.getElementById('fullname').textContent = `Full Name: ${fullname}`;
+            document.getElementById('registrationNumber').textContent = `Registration Number: ${registrationNumber}`;
+            document.getElementById('department').textContent = `Department: ${department}`;
+            document.getElementById('englishScore').textContent = `English Score: ${englishScore}`;
+            document.getElementById('mathScore').textContent = `Math Score: ${mathScore}`;
+            document.getElementById('physicsScore').textContent = `Physics Score: ${physicsScore}`;
+            document.getElementById('educationScore').textContent = `Chemistry Score: ${educationScore}`;
+            document.getElementById('averageScore').textContent = `Average Score: ${averageScore}`;
+            document.getElementById('timeTaken').textContent = `Time Taken: ${timeTaken} seconds`;
+
+            const resultStatus = averageScore >= 50 ? "Passed" : "Failed";
+            document.getElementById('resultStatus').textContent = `Status: ${resultStatus}`;
+        }
+
+        // Logout button functionality
+        document.getElementById("logoutButton").addEventListener("click", function() {
+            window.location.href = "index.html";
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Results</title>
+    <style>
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button id="download-btn">Download Results</button>
+
+    <script>
+        document.getElementById('download-btn').addEventListener('click', downloadResults);
+
+        function downloadResults() {
+            const results = [
+                {name: 'John Doe', score: 85},
+                {name: 'Jane Smith', score: 92},
+                {name: 'Sam Brown', score: 78},
+                // Add more results as needed
+            ];
+
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "name,score\n"; // CSV header
+
+            results.forEach(row => {
+                csvContent += `${row.name},${row.score}\n`;
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', 'results.csv');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>

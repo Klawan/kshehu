@@ -1,0 +1,120 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+#container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styles */
+header {
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* Instructions page styles */
+#instructionsContainer {
+    margin-top: 20px;
+}
+
+#instructionsContainer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#instructionsContainer ul li {
+    margin: 5px 0;
+}
+
+/* Form styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#logoutButton {
+    background-color: #dc3545;
+    margin-top: 20px;
+}
+
+#logoutButton:hover {
+    background-color: #c82333;
+}
+
+/* Exam page styles */
+#examContainer {
+    margin-top: 20px;
+}
+
+#questions p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#questions label {
+    display: block;
+    margin: 5px 0;
+}
+
+#questions input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Result page styles */
+#resultContainer {
+    margin-top: 20px;
+}
+
+#resultContainer p {
+    font-size: 18px;
+    margin: 10px 0;
+}
